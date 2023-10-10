@@ -14,9 +14,9 @@ public enum EnumPrioridade {
     PRIORITARIO(1),
     URGENTE(2);
 
-    int valor;
+    final int valor;
 
-    private EnumPrioridade(int valor) {
+    EnumPrioridade(int valor) {
         this.valor = valor;
     }
 
