@@ -9,10 +9,13 @@ package projetinho.Enums;
  * @author guigu
  */
 public enum EnumPrioridade {
-    NAO_PRIORITARIO(-1),
-    PADRAO(0),
-    PRIORITARIO(1),
-    URGENTE(2);
+
+    // Verde: Nível de emergência baixo
+    VERDE(0),
+    // Amarelo: Nível de emergência médio
+    AMARELO(1),
+    // Vermelho: Nível de emergência alto
+    VERMELHO(2);
 
     final int valor;
 

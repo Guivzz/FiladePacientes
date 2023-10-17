@@ -17,7 +17,8 @@ public class Paciente {
     int cadastro;
     String sintomas;
     EnumPrioridade prioridade;
-    
+    boolean idoso;
+    String numeroChamada;
 
     public Paciente(String nome, int idade, String contato, int cadastro, String sintomas, int prioridade) {
         this.nome = nome;
@@ -27,9 +28,31 @@ public class Paciente {
         this.sintomas = sintomas;
         this.prioridade = EnumPrioridade.Valor(prioridade);
     }
+
+    public Paciente(boolean idoso) {
+        this.nome = null;
+        this.idade = 0;
+        this.contato = null;
+        this.cadastro = 0;
+        this.sintomas = null;
+        this.prioridade = null;
+        this.idoso = idoso;
+    }
     
     
     //GETTERS AND SETTERS;
+
+    public String getNumeroChamada() {
+        return numeroChamada;
+    }
+
+    public void setNumeroChamada(String numeroChamada) {
+        this.numeroChamada = numeroChamada;
+    }
+
+    public boolean isIdoso() {
+        return idoso;
+    }
 
     public String getNome() {
         return nome;
@@ -78,7 +101,7 @@ public class Paciente {
     public void setPrioridade(EnumPrioridade prioridade) {
         this.prioridade = prioridade;
     }
-    
+
     //FIM GETTERS AND SETTERS;
     
     @Override
@@ -90,7 +113,8 @@ public class Paciente {
                 + "\nContato: " + contato + " "
                 + "\nCadastro: " + cadastro + " "
                 + "\nSintomas: " + sintomas + " "
-                + "\n" + prioridade;
+                + "\n" + prioridade + " "
+                +  "\n" + idoso;
                 
     }
     

@@ -22,28 +22,35 @@ class FilaConsulta {
     }
 
     public void inserirPaciente(Paciente paciente) {
-        this.filaPadrao.inserirPaciente(paciente);
-    }
 
-    public Paciente atenderPaciente() {
-        if (!this.filaPrioritaria.estaVazia()) {
-            return this.filaPrioritaria.chamarPrimeiroPaciente();
-        } else {
-            return this.filaPadrao.chamarPrimeiroPaciente();
-        }
+        this.filaPadrao.inserirPaciente(paciente);
     }
 
     public void moverPacientePrioritario() {
         Nodo nodoAtual = this.filaPadrao.getInicio();
         while (nodoAtual != null) {
             Paciente paciente = nodoAtual.getPaciente();
-            if (paciente.getPrioridade() == EnumPrioridade.PRIORITARIO) {
+            if (paciente.getPrioridade() == EnumPrioridade.AMARELO) {
                 this.filaPrioritaria.inserirPaciente(paciente);
                 this.filaPadrao.removerPacienteObj(paciente);
             }
             nodoAtual = nodoAtual.getProximo();
         }
     }
+
+    public void moverPacientePrioritarioTriagem() {
+
+        Nodo nodoAtual = this.filaPadrao.getInicio();
+        while (nodoAtual != null) {
+            Paciente paciente = nodoAtual.getPaciente();
+            if (paciente.isIdoso()) {
+                this.filaPrioritaria.inserirPaciente(paciente);
+                this.filaPadrao.removerPacienteObj(paciente);
+            }
+            nodoAtual = nodoAtual.getProximo();
+        }
+    }
+
 
     public void impreimirFila() {
         System.out.println("Fila Padrão: \n");
@@ -52,4 +59,11 @@ class FilaConsulta {
         filaPrioritaria.imprimir();
     }
 
+    public FilaHandler getFilaPadrao() {
+        return filaPadrao;
+    }
+
+    public FilaHandler getFilaPrioritaria() {
+        return filaPrioritaria;
+    }
 }
