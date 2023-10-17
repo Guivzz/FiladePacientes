@@ -1,56 +1,132 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package projetinho;
 
-import projetinho.Enums.EnumPrioridade;
-import projetinho.Paciente;
+/**
+ *
+ * @author guigu
+ */
+class FilaHandler {
 
-import java.util.Iterator;
-import java.util.Queue;
-
-public class FilaHandler {
-
-    private int contadorPacientes = 0;
-
-    public void filtroFila(Queue<Paciente> filaPrincipal, Queue<Paciente> filaPrioritaria) {
-        Iterator<Paciente> iterator = filaPrincipal.iterator();
-        while (iterator.hasNext()) {
-            Paciente paciente = iterator.next();
-            if (paciente.prioridade == EnumPrioridade.Valor(1)) {
-                filaPrioritaria.add(paciente);
-                iterator.remove();
-            }
-        }
+    public Nodo getInicio() {
+        return inicio;
     }
 
-    public Paciente removerPaciente(Queue<Paciente> filaPrincipal, Queue<Paciente> filaPrioritaria) {
+    private Nodo inicio;
+    private Nodo fim;
+    private int tamanho;
 
-        Paciente pacientePadrao = filaPrincipal.peek();
-        Paciente pacientePrioritario = filaPrioritaria.peek();
+    public FilaHandler() {
+        this.inicio = null;
+        this.fim = null;
+        this.tamanho = 0;
+    }
 
-        // Verifica se a lista principal está vazia
-        if (filaPrincipal.isEmpty()) {
+    public void inserirPaciente(Paciente paciente) {
+        Nodo novoNodo = new Nodo(paciente);
+
+        if (this.inicio == null) {
+            this.inicio = novoNodo;
+            this.fim = novoNodo;
+        } else {
+            this.fim.proximo = novoNodo;
+            novoNodo.anterior = this.fim;
+            this.fim = novoNodo;
+        }
+
+        this.tamanho++;
+    }
+
+    public int tamanho() {
+        return tamanho;
+    }
+
+    public Paciente chamarPrimeiroPaciente() {
+        if (this.estaVazia()) {
             return null;
         }
 
-        // Verifica se o primeiro paciente da lista principal tem prioridade 2
-        Iterator<Paciente> iterator = filaPrincipal.iterator();
-        while (iterator.hasNext()) {
-            Paciente paciente = iterator.next();
-            if (paciente.prioridade == EnumPrioridade.Valor(2)) {
-                iterator.remove();
-                return paciente;
+        Paciente paciente = this.inicio.paciente;
+        this.inicio = this.inicio.proximo;
+
+        if (this.inicio == null) {
+            this.fim = null;
+        } else {
+            this.inicio.anterior = null;
+        }
+
+        this.tamanho--;
+        return paciente;
+    }
+
+    public void removerPacienteObj(Paciente paciente) {
+        Nodo nodoAtual = this.inicio;
+        while (nodoAtual != null) {
+            if (nodoAtual.paciente.equals(paciente)) {
+                if (nodoAtual == this.fim) {
+                    this.fim = nodoAtual.anterior;
+                }
+                nodoAtual.anterior.proximo = nodoAtual.proximo;
+                if (nodoAtual.proximo != null) {
+                    nodoAtual.proximo.anterior = nodoAtual.anterior;
+                }
+                nodoAtual = null;
+                return;
             }
+            nodoAtual = nodoAtual.proximo;
+        }
+    }
+
+    public boolean estaVazia() {
+        return this.tamanho == 0;
+    }
+
+    public void imprimir() {
+        Nodo nodo = this.inicio;
+
+        while (nodo != null) {
+            System.out.println(nodo.paciente);
+            nodo = nodo.proximo;
+        }
+    }
+
+    public class Nodo {
+
+        public Paciente getPaciente() {
+            return paciente;
         }
 
-        if (contadorPacientes == 2 || filaPrioritaria.isEmpty()) {
-            filaPrincipal.poll();
-            contadorPacientes = 0;
-            return pacientePadrao;
-
+        public void setPaciente(Paciente paciente) {
+            this.paciente = paciente;
         }
-        filaPrioritaria.poll();
-        contadorPacientes++;
-        return pacientePrioritario;
+
+        public Nodo getAnterior() {
+            return anterior;
+        }
+
+        public void setAnterior(Nodo anterior) {
+            this.anterior = anterior;
+        }
+
+        public Nodo getProximo() {
+            return proximo;
+        }
+
+        public void setProximo(Nodo proximo) {
+            this.proximo = proximo;
+        }
+
+        private Paciente paciente;
+        private Nodo anterior;
+        private Nodo proximo;
+
+        public Nodo(Paciente paciente) {
+            this.paciente = paciente;
+            this.anterior = null;
+            this.proximo = null;
+        }
     }
 
 }
-

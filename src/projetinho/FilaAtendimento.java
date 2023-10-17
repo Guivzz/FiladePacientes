@@ -7,25 +7,21 @@ public class FilaAtendimento {
 
     public static void main(String[] args) {
 
-        FilaHandler filaHandler = new FilaHandler();
+        
+        Paciente paciente1 = new Paciente("Pedro", 40, "93344434467", 99003, "Dores na coluna", 0);
+        Paciente paciente2 = new Paciente("Maneiro", 22, "93344434467", 99003, "Dores na coluna", 1);
+        
+        FilaConsulta fila = new FilaConsulta();
 
-        Queue<Paciente> filaPrincipal = new LinkedList<>();
-        Queue<Paciente> filaPrioritaria = new LinkedList<>();
-
-        filaPrincipal.add(new Paciente("Joao", 20, "98423332267", 5093, "Dores", 1));
-        filaPrincipal.add(new Paciente("Clever", 22, "93344434467", 99003, "Dores na coluna", 0));
-        filaPrincipal.add(new Paciente("Maria", 30, "98423332267", 5093, "Dores", 1));
-        filaPrincipal.add(new Paciente("Pedro", 40, "93344434467", 99003, "Dores na coluna", 0));
-        filaPrincipal.add(new Paciente("Pedrox", 40, "93344434467", 99003, "dores na prostrata", 2));
-        filaPrincipal.add(new Paciente("Jorge", 40, "93344434467", 99003, "Dores na coluna", 0));
-        filaPrincipal.add(new Paciente("Maria", 30, "98423332267", 5093, "Dores", 1));
-        filaPrincipal.add(new Paciente("Maria", 30, "98423332267", 5093, "Dores", 1));
-        filaPrincipal.add(new Paciente("Pedro", 40, "93344434467", 99003, "Dores na coluna", 0));
-
-        filaHandler.filtroFila(filaPrincipal, filaPrioritaria);
-
-        for (int i = 0; i <= 8; i++) {
-            System.out.println(filaHandler.removerPaciente(filaPrincipal, filaPrioritaria));
-        }
+        fila.inserirPaciente(paciente1);
+        fila.inserirPaciente(paciente2);
+        fila.inserirPaciente(new Paciente("Joao", 40, "93344434467", 99003, "Dores na coluna", 1));
+        fila.inserirPaciente(new Paciente("Maicon", 40, "93344434467", 99003, "Dores na coluna", 0));
+        fila.inserirPaciente(new Paciente("Jose", 40, "93344434467", 99003, "Dores na coluna", 0));
+        fila.moverPacientePrioritario();
+        fila.impreimirFila();
+        
+        
+        
     }
 }
