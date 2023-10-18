@@ -51,8 +51,7 @@ class FilaConsulta {
         }
     }
 
-
-    public void impreimirFila() {
+    public void imprimirFila() {
         System.out.println("Fila Padrão: \n");
         filaPadrao.imprimir();
         System.out.println("Fila Prioritaria: \n");
@@ -66,4 +65,5 @@ class FilaConsulta {
     public FilaHandler getFilaPrioritaria() {
         return filaPrioritaria;
     }
+
 }

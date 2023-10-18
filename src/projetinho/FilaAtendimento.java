@@ -7,26 +7,29 @@ public class FilaAtendimento {
 
     public static void main(String[] args) {
 
-        
-
-        
         InterfaceActions botao = new InterfaceActions();
 
-        
-        botao.adiconarPacientePreferencialTriagem();
-        botao.adiconarPacientePreferencialTriagem();
         botao.adiconarPacientePreferencialTriagem();
         botao.adiconarPacientePreferencialTriagem();
         botao.adiconarPacientePreferencialTriagem();
         botao.adicionarPacienteTriagem();
-        botao.adiconarPacientePreferencialTriagem();
+
+        String senha = botao.chamadorTriagem().getSenha();                    // chama o paciente da filaTriagem pela senha, dessa forma consegui retornar a senha em si.
+        System.out.println("Senha impressa: " +senha);
+        botao.editorTriagem("Joao", 20, "Dor na coluna", 1); // edita as informações do paciente e adiciona a filaGuiche
         
 
-        botao.chamarFilaTriagem();
-        botao.chamarFilaTriagem();
-        botao.chamarFilaTriagem();
-        botao.chamarFilaTriagem();
-        botao.chamarFilaTriagem();
-        botao.chamarFilaTriagem();   
+        botao.filaTriagem.getFilaPadrao().imprimir();                           // imprime a filaTriagem para verificar se o paciente foi removido corretamente
+        System.out.println("SLAAAAAAAA");
+        botao.filaTriagem.getFilaPrioritaria().imprimir();
+
+        botao.filaGuiche.getFilaPadrao().imprimir();                            // imprime a filaGuiche para verificar se foi adicionado corretamente com as informações corretas;
+        System.out.println("SLAAAAAAAA");
+        botao.filaGuiche.getFilaPrioritaria().imprimir();
+        
+                                                                                            
+                                                                                // Precisamos agora editar as informações contato, cadastro e caso ele seja aprovado pelo guiche devera ir para uma fila separada, onde sera atendido pelo medico.
+        
+  
     }
 }

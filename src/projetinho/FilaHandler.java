@@ -95,7 +95,7 @@ class FilaHandler {
     }
 
     public boolean estaVazia() {
-        return this.tamanho == 0;
+         return this.inicio == null && this.fim == null;
     }
 
     public void imprimir() {
