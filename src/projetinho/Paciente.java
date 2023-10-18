@@ -11,6 +11,7 @@ import projetinho.Enums.EnumPrioridade;
  * @author guigu
  */
 public class Paciente {
+
     String nome;
     int idade;
     String contato;
@@ -18,7 +19,7 @@ public class Paciente {
     String sintomas;
     EnumPrioridade prioridade;
     boolean idoso;
-    String numeroChamada;
+    String senha;
 
     public Paciente(String nome, int idade, String contato, int cadastro, String sintomas, int prioridade) {
         this.nome = nome;
@@ -29,7 +30,7 @@ public class Paciente {
         this.prioridade = EnumPrioridade.Valor(prioridade);
     }
 
-    public Paciente(boolean idoso) {
+    public Paciente(boolean idoso, String senha) {
         this.nome = null;
         this.idade = 0;
         this.contato = null;
@@ -37,17 +38,17 @@ public class Paciente {
         this.sintomas = null;
         this.prioridade = null;
         this.idoso = idoso;
+        this.senha = senha;
+
     }
-    
-    
+
     //GETTERS AND SETTERS;
-
-    public String getNumeroChamada() {
-        return numeroChamada;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setNumeroChamada(String numeroChamada) {
-        this.numeroChamada = numeroChamada;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public boolean isIdoso() {
@@ -103,19 +104,18 @@ public class Paciente {
     }
 
     //FIM GETTERS AND SETTERS;
-    
     @Override
     public String toString() {
-        return  
-                "\nPaciente: "
-                + "\nNome: " + nome + " " 
-                + "\nIdade: " + idade + " " 
+        return "\nPaciente: "
+                + "\nNome: " + nome + " "
+                + "\nIdade: " + idade + " "
                 + "\nContato: " + contato + " "
                 + "\nCadastro: " + cadastro + " "
                 + "\nSintomas: " + sintomas + " "
                 + "\n" + prioridade + " "
-                +  "\n" + idoso;
+                + "\n" + idoso + " "
+                + "\n" + senha + " ";
                 
     }
-    
+
 }

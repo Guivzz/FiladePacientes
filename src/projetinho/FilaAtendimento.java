@@ -12,15 +12,21 @@ public class FilaAtendimento {
         
         InterfaceActions botao = new InterfaceActions();
 
-
+        
+        botao.adiconarPacientePreferencialTriagem();
+        botao.adiconarPacientePreferencialTriagem();
+        botao.adiconarPacientePreferencialTriagem();
+        botao.adiconarPacientePreferencialTriagem();
+        botao.adiconarPacientePreferencialTriagem();
         botao.adicionarPacienteTriagem();
-        botao.adicionarPacienteTriagem();
         botao.adiconarPacientePreferencialTriagem();
-        botao.adicionarPacienteTriagem();
-        botao.adiconarPacientePreferencialTriagem();
-        botao.adiconarPacientePreferencialTriagem();
-        botao.adiconarPacientePreferencialTriagem();
+        
 
         botao.chamarFilaTriagem();
+        botao.chamarFilaTriagem();
+        botao.chamarFilaTriagem();
+        botao.chamarFilaTriagem();
+        botao.chamarFilaTriagem();
+        botao.chamarFilaTriagem();   
     }
 }

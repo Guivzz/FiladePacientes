@@ -43,6 +43,13 @@ class FilaHandler {
         return tamanho;
     }
 
+    public Paciente peek() {
+        if (this.inicio == null) {
+            return null;
+        }
+        return this.inicio.paciente;
+    }
+
     public Paciente chamarPrimeiroPaciente() {
         if (this.estaVazia()) {
             return null;
@@ -65,14 +72,22 @@ class FilaHandler {
         Nodo nodoAtual = this.inicio;
         while (nodoAtual != null) {
             if (nodoAtual.paciente.equals(paciente)) {
-                if (nodoAtual == this.fim) {
+                if (nodoAtual == this.inicio) {
+                    this.inicio = nodoAtual.proximo;
+                    if (this.inicio != null) {
+                        this.inicio.anterior = null;
+                    } else {
+                        this.fim = null; 
+                    }
+                } else if (nodoAtual == this.fim) {
                     this.fim = nodoAtual.anterior;
-                }
-                nodoAtual.anterior.proximo = nodoAtual.proximo;
-                if (nodoAtual.proximo != null) {
+                    this.fim.proximo = null;
+                } else {
+                    nodoAtual.anterior.proximo = nodoAtual.proximo;
                     nodoAtual.proximo.anterior = nodoAtual.anterior;
                 }
                 nodoAtual = null;
+                this.tamanho--;
                 return;
             }
             nodoAtual = nodoAtual.proximo;
