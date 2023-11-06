@@ -7,12 +7,12 @@ public class InterfaceActions {
     FilaConsulta filaTriagem = new FilaConsulta();
     FilaConsulta filaGuiche = new FilaConsulta();
     FilaConsulta filaConsultorio = new FilaConsulta();
-    Paciente pacienteEmTriagem = null;
+    Paciente pacienteEmTriagem,pacienteNoGuiche,pacienteNoConsultorio = null;
     int contador = 1;
     int contadorPrioridade = 1;
-    int limite = 0;
-    int limiteGuiche = 0;
+    int limite, limiteGuiche, limiteConsultorio = 0;
 
+    //Adiciona os pacientes à filaTriagem
     public void adicionarPacienteTriagem() {
 
         String chamada = "A" + String.format("%04d", contador++);
@@ -34,54 +34,78 @@ public class InterfaceActions {
         filaTriagem.moverPacientePrioritarioTriagem();
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    //Metodos que chamam o proximo paciente das filas
     public Paciente chamadorTriagem() {  //verifica se a filaTriagem(padrao||prioritaria) esta vazia, se nao estiver ele chama em um padrão 2x1 sendo 2 pacientes prioritarios a cada padrão.
-        Paciente topo = null;              //caso não haja pacientes em alguma das respectivas filas, ele devera ignorar e imprimir qualquer paciente que haja.
+        pacienteEmTriagem = null;              //caso não haja pacientes em alguma das respectivas filas, ele devera ignorar e imprimir qualquer paciente que haja.
 
         if (filaTriagem.getFilaPadrao().estaVazia() && filaTriagem.getFilaPrioritaria().estaVazia()) {
             System.out.println("Fila está vazia");
-            return null;
+            return pacienteEmTriagem;
         }
         if (limite != 2 && !filaTriagem.getFilaPrioritaria().estaVazia() || filaTriagem.getFilaPadrao().estaVazia()) {
-            topo = filaTriagem.getFilaPrioritaria().peek();
+            pacienteEmTriagem = filaTriagem.getFilaPrioritaria().peek();
             limite++;
-            System.out.println("Numero impresso:" + topo.getSenha());
-            return pacienteEmTriagem = topo;
+            System.out.println("Numero impresso:" + pacienteEmTriagem.getSenha());
+            return pacienteEmTriagem;
         }
         if (limite == 2 || filaTriagem.getFilaPrioritaria().estaVazia()) {
-            topo = filaTriagem.getFilaPadrao().peek();
+            pacienteEmTriagem = filaTriagem.getFilaPadrao().peek();
             limite = 0;
-            System.out.println("Numero impresso:" + topo.getSenha());
-            return pacienteEmTriagem = topo;
+            System.out.println("Numero impresso:" + pacienteEmTriagem.getSenha());
+            return pacienteEmTriagem;
         }
-        return null;
+        return pacienteEmTriagem;
     }
 
     public Paciente chamadorGuiche() { //Esta sendo implementado, falta editar o metodo e criar um metodo conjunto editGuiche, que enviara para a filaConsultorio.
-        Paciente topo = null;
+        pacienteNoGuiche = null;
 
         if (filaGuiche.getFilaPadrao().estaVazia() && filaGuiche.getFilaPrioritaria().estaVazia()) {
             System.out.println("Fila está vazia");
-            return topo;
+            return pacienteNoGuiche;
         }
         if (limiteGuiche != 2 && !filaGuiche.getFilaPrioritaria().estaVazia() || filaGuiche.getFilaPadrao().estaVazia()) {
-            topo = filaGuiche.getFilaPrioritaria().peek();
-            filaGuiche.getFilaPrioritaria().removerPacienteObj(topo);
+            pacienteNoGuiche = filaGuiche.getFilaPrioritaria().peek();
+            System.out.println("Numero impresso no Guiche:" + pacienteNoGuiche.getSenha());
             limiteGuiche++;
-            System.out.println("Numero impresso Guiche:" + topo.getSenha());
-            return topo;
+            return pacienteNoGuiche;
         }
         if (limiteGuiche == 2 || filaGuiche.getFilaPrioritaria().estaVazia()) {
-            topo = filaGuiche.getFilaPadrao().peek();
-            filaGuiche.getFilaPadrao().removerPacienteObj(topo);
+            pacienteNoGuiche = filaGuiche.getFilaPadrao().peek();
+            System.out.println("Numero impresso:" + pacienteNoGuiche.getSenha());
             limiteGuiche = 0;
-            System.out.println("Numero impresso:" + topo.getSenha());
-            return topo;
+            return pacienteNoGuiche;
         }
-        return null;
+        return pacienteNoGuiche;
     }
 
-    public void editorTriagem(String nome, int idade, String sintomas, int prioridade) { //pega a variavel "pacienteEmTriagem", que esta sendo alocada pelo metodo chamadorTriagem e 
+    public Paciente chamadorConsultorio() {
+        pacienteNoConsultorio = null;
+        if (filaConsultorio.getFilaPadrao().estaVazia() && filaConsultorio.getFilaPrioritaria().estaVazia()){
+            System.out.println("Não há pacientes para proceguir ao consultorio.");
+            return null;
+        }
+        if (limiteConsultorio != 2 && !filaConsultorio.getFilaPrioritaria().estaVazia()|| filaConsultorio.getFilaPadrao().estaVazia()) {
+            pacienteNoConsultorio = filaConsultorio.getFilaPrioritaria().peek();
+            filaConsultorio.getFilaPrioritaria().removerPacienteObj(pacienteNoGuiche);
+            System.out.println("Proximo paciente a se dirigir ao consultório" + pacienteNoConsultorio);
+            limiteConsultorio++;
+            return pacienteNoConsultorio;
+        }
         
+        if (limiteConsultorio == 2 || filaConsultorio.getFilaPrioritaria().estaVazia()) {
+            pacienteNoConsultorio = filaConsultorio.getFilaPadrao().peek();
+            System.out.println("Proximo paciente a se dirigir ao consultório" + pacienteNoConsultorio);
+            limiteConsultorio = 0;
+            return pacienteNoConsultorio;
+        }
+        return pacienteNoConsultorio;
+    }
+
+    //Editores de Dados:
+    public void editorTriagem(String nome, int idade, String sintomas, int prioridade) { //pega a variavel "pacienteEmTriagem", que esta sendo alocada pelo metodo chamadorTriagem e 
+
         pacienteEmTriagem.setNome(nome);
         pacienteEmTriagem.setIdade(idade);
         pacienteEmTriagem.setSintomas(sintomas);
@@ -109,4 +133,32 @@ public class InterfaceActions {
         }
     }
 
+    public void editorGuiche(String contato, int cadastro) {
+        pacienteNoGuiche.setContato(contato);
+        pacienteNoGuiche.setCadastro(cadastro);
+        if (pacienteNoGuiche != null) {
+            if (pacienteNoGuiche.prioridade == EnumPrioridade.VERDE) {
+                filaConsultorio.getFilaPadrao().inserirPaciente(pacienteNoGuiche);
+                filaGuiche.getFilaPadrao().removerPacienteObj(pacienteNoGuiche);
+
+                System.out.println("Paciente editado e encaminhado ao consultorio");
+                return;
+            }
+            if (pacienteNoGuiche.prioridade == EnumPrioridade.AMARELO) {
+                filaConsultorio.getFilaPrioritaria().inserirPaciente(pacienteNoGuiche);
+                filaGuiche.getFilaPrioritaria().removerPacienteObj(pacienteNoGuiche);
+                System.out.println("Paciente editado e encaminhado ao consultorio");
+            }
+        }
+    }
+
+    public void removerGuiche() {
+        filaGuiche.getFilaPadrao().removerPacienteObj(pacienteNoGuiche);
+        filaGuiche.getFilaPrioritaria().removerPacienteObj(pacienteNoGuiche);
+        System.out.println("Paciente removido!");
+    }
+    
+    public Paciente chamadorConsultorioDados() { 
+        return pacienteNoConsultorio;
+    }
 }

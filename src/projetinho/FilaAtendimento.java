@@ -27,9 +27,26 @@ public class FilaAtendimento {
         System.out.println("SLAAAAAAAA");
         botao.filaGuiche.getFilaPrioritaria().imprimir();
         
+        senha = botao.chamadorGuiche().getSenha();
+        
                                                                                             
                                                                                 // Precisamos agora editar as informações contato, cadastro e caso ele seja aprovado pelo guiche devera ir para uma fila separada, onde sera atendido pelo medico.
+        botao.editorGuiche("2392329992", 23232333);
         
-  
+        botao.filaGuiche.getFilaPadrao().imprimir();
+        botao.filaGuiche.getFilaPrioritaria().imprimir();
+        
+        System.out.println("Consultorio");
+        
+        botao.filaConsultorio.getFilaPadrao().imprimir();
+        botao.filaConsultorio.getFilaPrioritaria().imprimir();
+        
+        botao.chamadorConsultorio();
+        
+        System.out.println(botao.chamadorConsultorioDados().getNome() + " " + botao.chamadorConsultorioDados().getSenha());
+        botao.filaConsultorio.getFilaPadrao().imprimir();
+        botao.filaConsultorio.getFilaPrioritaria().imprimir();
     }
+
+
 }
