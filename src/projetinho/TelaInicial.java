@@ -93,20 +93,17 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    InterfaceActions botao = new InterfaceActions();
 
     private void filaPreferencialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filaPreferencialMouseClicked
-        // TODO add your handling code here:
-
-        botao.adiconarPacientePreferencialTriagem();
 
 
-    }//GEN-LAST:event_filaPreferencialMouseClicked
 
-    private void filaAdultoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filaAdultoMouseClicked
-        // TODO add your handling code here:
-        botao.adicionarPacienteTriagem();
-    }//GEN-LAST:event_filaAdultoMouseClicked
+    }
+
+    private void filaAdultoMouseClicked(java.awt.event.MouseEvent evt) {
+
+
+    }
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:

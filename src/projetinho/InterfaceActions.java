@@ -4,24 +4,34 @@ import projetinho.Enums.EnumPrioridade;
 
 public class InterfaceActions {
 
-    FilaConsulta filaTriagem = new FilaConsulta();
-    FilaConsulta filaGuiche = new FilaConsulta();
-    FilaConsulta filaConsultorio = new FilaConsulta();
-    Paciente pacienteEmTriagem,pacienteNoGuiche,pacienteNoConsultorio = null;
+    FilaConsulta filaTriagem;
+    FilaConsulta filaGuiche;
+    FilaConsulta filaConsultorio;
+    Paciente pacienteEmTriagem, pacienteNoGuiche, pacienteNoConsultorio = null;
     int contador = 1;
     int contadorPrioridade = 1;
     int limite, limiteGuiche, limiteConsultorio = 0;
 
     //Adiciona os pacientes à filaTriagem
-    public void adicionarPacienteTriagem() {
+
+    public InterfaceActions(FilaConsulta filaTriagem, FilaConsulta filaGuiche, FilaConsulta filaConsultorio){
+
+        this.filaTriagem = filaTriagem;
+        this.filaGuiche = filaGuiche;
+        this.filaConsultorio = filaConsultorio;
+
+    }
+
+    public String adicionarPacienteTriagem() {
 
         String chamada = "A" + String.format("%04d", contador++);
         Paciente paciente = new Paciente(false, chamada);
         paciente.setSenha(chamada);
-        System.out.println(paciente.getSenha());
+        //System.out.println(paciente.getSenha());
         filaTriagem.inserirPaciente(paciente);
         filaTriagem.moverPacientePrioritarioTriagem();
 
+        return paciente.getSenha();
     }
 
     public void adiconarPacientePreferencialTriagem() {
