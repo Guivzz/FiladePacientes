@@ -11,9 +11,22 @@ public class FilaAtendimento {
         FilaConsulta filaGuiche = new FilaConsulta();
         FilaConsulta filaConsultorio = new FilaConsulta();
 
-        InterfaceActions botao = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
+        InterfaceActions interfaceActions = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
         System.out.println("teste");
+                
+        
+        TelaInicial telaInicial = new TelaInicial(interfaceActions);
+        TelaFilaPadrao telaFila  = new TelaFilaPadrao(interfaceActions);
+        TelaFilaTriagem telaTriagem = new TelaFilaTriagem(interfaceActions);
+        TelaGuiche telaGuiche = new TelaGuiche(interfaceActions);
 
+        
+        telaInicial.setVisible(true);
+        telaFila.setVisible(true);
+        telaTriagem.setVisible(true);
+        telaGuiche.setVisible(true);
+
+        
     /*  InterfaceActions botao = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
 
         botao.adiconarPacientePreferencialTriagem();

@@ -21,13 +21,13 @@ public class InterfaceActions {
         this.filaConsultorio = filaConsultorio;
 
     }
-
+        
     public String adicionarPacienteTriagem() {
 
         String chamada = "A" + String.format("%04d", contador++);
         Paciente paciente = new Paciente(false, chamada);
         paciente.setSenha(chamada);
-        //System.out.println(paciente.getSenha());
+        System.out.println(paciente.getSenha());
         filaTriagem.inserirPaciente(paciente);
         filaTriagem.moverPacientePrioritarioTriagem();
 
