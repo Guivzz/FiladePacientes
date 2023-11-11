@@ -8,12 +8,12 @@ import projetinho.FilaConsulta;
 import projetinho.InterfaceActions;
 
 public class TelaInicial extends javax.swing.JFrame {
-    
+
     InterfaceActions acoes;
 
     public TelaInicial(InterfaceActions acoes) {
         this.acoes = acoes;
-        
+
         initComponents();
     }
 
@@ -23,7 +23,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
         filaAdulto = new javax.swing.JButton();
         filaPreferencial = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -44,35 +43,21 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ver fila");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(135, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(filaPreferencial, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filaAdulto, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(133, 133, 133))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(filaPreferencial, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filaAdulto, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(38, 38, 38)
+                .addGap(67, 67, 67)
                 .addComponent(filaPreferencial, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(filaAdulto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,29 +70,22 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void filaPreferencialMouseClicked(java.awt.event.MouseEvent evt) {                                              
-
-        acoes.adicionarPacienteTriagem();
-
+    private void filaPreferencialMouseClicked(java.awt.event.MouseEvent evt) {
+        acoes.adiconarPacientePreferencialTriagem();
     }
 
     private void filaAdultoMouseClicked(java.awt.event.MouseEvent evt) {
 
-
+        acoes.adicionarPacienteTriagem();
     }
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {
 
-
-        
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton filaAdulto;
     private javax.swing.JButton filaPreferencial;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
