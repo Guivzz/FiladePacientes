@@ -4,30 +4,33 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class FilaAtendimento {
-
+    
     public static void main(String[] args) {
-
+        
         FilaConsulta filaTriagem = new FilaConsulta();
         FilaConsulta filaGuiche = new FilaConsulta();
         FilaConsulta filaConsultorio = new FilaConsulta();
-
+        
         InterfaceActions interfaceActions = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
         System.out.println("teste");
-                
         
+        TelaFila telaFilaTriagem = new TelaFila(interfaceActions, "Triagem");
+        TelaFila telaFilaGuiche = new TelaFila(interfaceActions, "Guiche");
+        TelaFila telaFilaConsultorio = new TelaFila(interfaceActions, "Consultorio");
         TelaInicial telaInicial = new TelaInicial(interfaceActions);
-        TelaFilaPadrao telaFila  = new TelaFilaPadrao(interfaceActions);
-        TelaFilaTriagem telaTriagem = new TelaFilaTriagem(interfaceActions);
-        TelaGuiche telaGuiche = new TelaGuiche(interfaceActions);
-
+        TelaTriagem telaTriagem = new TelaTriagem(interfaceActions, telaFilaTriagem);
+        TelaGuiche telaGuiche = new TelaGuiche(interfaceActions, telaFilaGuiche);
+        TelaConsultorio telaConsultorio = new TelaConsultorio(interfaceActions, telaFilaConsultorio);
         
         telaInicial.setVisible(true);
-        telaFila.setVisible(true);
+        telaFilaTriagem.setVisible(true);
+        telaFilaGuiche.setVisible(true);
+        telaFilaConsultorio.setVisible(true);
         telaTriagem.setVisible(true);
         telaGuiche.setVisible(true);
+        telaConsultorio.setVisible(true);
 
-        
-    /*  InterfaceActions botao = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
+        /*  InterfaceActions botao = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
 
         botao.adiconarPacientePreferencialTriagem();
         botao.adiconarPacientePreferencialTriagem();
@@ -67,6 +70,5 @@ public class FilaAtendimento {
         botao.filaConsultorio.getFilaPadrao().imprimir();
         botao.filaConsultorio.getFilaPrioritaria().imprimir();
     }*/
-
     }
 }

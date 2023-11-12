@@ -91,7 +91,7 @@ public class InterfaceActions {
     }
 
     public Paciente chamadorConsultorio() {
-        pacienteNoConsultorio = null;
+
         if (filaConsultorio.getFilaPadrao().estaVazia() && filaConsultorio.getFilaPrioritaria().estaVazia()){
             System.out.println("Não há pacientes para proceguir ao consultorio.");
             return null;
@@ -136,8 +136,8 @@ public class InterfaceActions {
                 return;
             }
             if (pacienteEmTriagem.prioridade == EnumPrioridade.VERMELHO) {
-                filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
                 filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
+                filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
                 System.out.println("Paciente enviado para emergencia");
             }
         }
@@ -168,6 +168,10 @@ public class InterfaceActions {
         System.out.println("Paciente removido!");
     }
     
+    public void removerConsultorio(){
+        filaConsultorio.getFilaPadrao().removerPacienteObj(pacienteNoConsultorio);
+        filaConsultorio.getFilaPrioritaria().removerPacienteObj(pacienteNoConsultorio);
+    }
     public Paciente chamadorConsultorioDados() { 
         return pacienteNoConsultorio;
     }
