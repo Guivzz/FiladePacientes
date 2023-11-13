@@ -18,7 +18,6 @@ public class TelaTriagem extends javax.swing.JFrame {
 
         campoNome = new javax.swing.JTextField();
         campoIdade = new javax.swing.JTextField();
-        prioriadadeUrgencia = new javax.swing.JComboBox<>();
         finalizarTriagem = new javax.swing.JButton();
         chamarProximo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -36,6 +35,8 @@ public class TelaTriagem extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         tituloTriagem = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        prioridadeText = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -58,15 +59,6 @@ public class TelaTriagem extends javax.swing.JFrame {
             }
         });
         getContentPane().add(campoIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 139, 32));
-
-        prioriadadeUrgencia.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        prioriadadeUrgencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "selecionar", "0", "1", "2", "3" }));
-        prioriadadeUrgencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prioriadadeUrgenciaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(prioriadadeUrgencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 291, -1, -1));
 
         finalizarTriagem.setBackground(new java.awt.Color(188, 198, 167));
         finalizarTriagem.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
@@ -177,6 +169,10 @@ public class TelaTriagem extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 660, 150));
 
+        jScrollPane2.setViewportView(prioridadeText);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 130, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,10 +183,6 @@ public class TelaTriagem extends javax.swing.JFrame {
     private void campoIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIdadeActionPerformed
 
     }//GEN-LAST:event_campoIdadeActionPerformed
-
-    private void prioriadadeUrgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prioriadadeUrgenciaActionPerformed
-        acoes.chamadorTriagem();
-    }//GEN-LAST:event_prioriadadeUrgenciaActionPerformed
 
     private void finalizarTriagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarTriagemMouseClicked
         // TODO add your handling code here:
@@ -205,9 +197,9 @@ public class TelaTriagem extends javax.swing.JFrame {
     public void chamarProximo() {
         String senha = acoes.chamadorTriagem().getSenha();                    // chama o paciente da filaTriagem pela senha, dessa forma consegui retornar a senha em si.
         campoSenha.setText(senha);
-        
+
         telaFila.setSenha(senha);
-        
+
         System.out.println("Proximo");
         campoNome.setText("");
         campoSintoma.setText("");
@@ -215,7 +207,7 @@ public class TelaTriagem extends javax.swing.JFrame {
     }
 
     public void finalizarTriagem() {
-        acoes.editorTriagem(campoNome.getText(), Integer.parseInt(campoIdade.getText()), campoSintoma.getText(), prioriadadeUrgencia.getSelectedIndex()); // edita as informações do paciente e adiciona a filaGuiche
+        acoes.editorTriagem(campoNome.getText(), Integer.parseInt(campoIdade.getText()), campoSintoma.getText(), Integer.parseInt(prioridadeText.getText())); // edita as informações do paciente e adiciona a filaGuiche
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,7 +229,8 @@ public class TelaTriagem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> prioriadadeUrgencia;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane prioridadeText;
     private javax.swing.JLabel tituloTriagem;
     // End of variables declaration//GEN-END:variables
 }

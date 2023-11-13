@@ -106,11 +106,12 @@ public class InterfaceActions {
         
         if (limiteConsultorio == 2 || filaConsultorio.getFilaPrioritaria().estaVazia()) {
             pacienteNoConsultorio = filaConsultorio.getFilaPadrao().peek();
+            filaConsultorio.getFilaPadrao().removerPacienteObj(pacienteNoGuiche);
             System.out.println("Proximo paciente a se dirigir ao consultório" + pacienteNoConsultorio);
             limiteConsultorio = 0;
             return pacienteNoConsultorio;
         }
-        return pacienteNoConsultorio;
+        return null;
     }
 
     //Editores de Dados:
@@ -121,24 +122,36 @@ public class InterfaceActions {
         pacienteEmTriagem.setSintomas(sintomas);
         pacienteEmTriagem.setPrioridade(EnumPrioridade.Valor(prioridade));
         if (pacienteEmTriagem != null) {
-            if (pacienteEmTriagem.prioridade == EnumPrioridade.VERDE) {
-                filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
-                filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
-                filaGuiche.getFilaPadrao().inserirPaciente(pacienteEmTriagem);
-                System.out.println("Paciente Padrão adicionado ao Guiche");
-                return;
+            if (null == pacienteEmTriagem.prioridade) {
+                System.out.println("deu erro !");
             }
-            if (pacienteEmTriagem.prioridade == EnumPrioridade.AMARELO) {
-                filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
-                filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
-                filaGuiche.getFilaPrioritaria().inserirPaciente(pacienteEmTriagem);
-                System.out.println("Paciente Prioritario adicionado ao guiche");
-                return;
-            }
-            if (pacienteEmTriagem.prioridade == EnumPrioridade.VERMELHO) {
-                filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
-                filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
-                System.out.println("Paciente enviado para emergencia");
+            else switch (pacienteEmTriagem.prioridade) {
+                case AZUL:
+                    filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
+                    filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
+                    filaGuiche.getFilaPadrao().inserirPaciente(pacienteEmTriagem);
+                    System.out.println("Paciente Não-priotário adicionado ao Guiche");
+                    break;
+                case VERDE:
+                    filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
+                    filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
+                    filaGuiche.getFilaPadrao().inserirPaciente(pacienteEmTriagem);
+                    System.out.println("Paciente Padrão adicionado ao Guiche");
+                    break;
+                case AMARELO:
+                    filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
+                    filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
+                    filaGuiche.getFilaPrioritaria().inserirPaciente(pacienteEmTriagem);
+                    System.out.println("Paciente Prioritario adicionado ao guiche");
+                    break;
+                case VERMELHO:
+                    filaTriagem.getFilaPrioritaria().removerPacienteObj(pacienteEmTriagem);
+                    filaTriagem.getFilaPadrao().removerPacienteObj(pacienteEmTriagem);
+                    System.out.println("Paciente enviado para emergencia");
+                    break;
+                default:
+                    System.out.println("deu erro !");
+                    break;
             }
         }
     }
@@ -147,7 +160,7 @@ public class InterfaceActions {
         pacienteNoGuiche.setContato(contato);
         pacienteNoGuiche.setCadastro(cadastro);
         if (pacienteNoGuiche != null) {
-            if (pacienteNoGuiche.prioridade == EnumPrioridade.VERDE) {
+            if (pacienteNoGuiche.prioridade == EnumPrioridade.VERDE || pacienteNoGuiche.prioridade == EnumPrioridade.AZUL) {
                 filaConsultorio.getFilaPadrao().inserirPaciente(pacienteNoGuiche);
                 filaGuiche.getFilaPadrao().removerPacienteObj(pacienteNoGuiche);
 

@@ -8,7 +8,7 @@ public class TelaConsultorio extends javax.swing.JFrame {
 
     InterfaceActions acoes;
     TelaFila telaFila;
-
+    Paciente paciente = null;
     public TelaConsultorio(InterfaceActions acoes, TelaFila telaFila) {
 
         this.acoes = acoes;
@@ -197,17 +197,17 @@ public class TelaConsultorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     public void proximoPaciente() {
+        paciente = acoes.chamadorConsultorio();
+        
+        campoSenha.setText(paciente.getSenha());
 
-        String senha = acoes.chamadorConsultorio().getSenha();
-        campoSenha.setText(senha);
+        telaFila.setSenha(paciente.getSenha());
 
-        telaFila.setSenha(senha);
-
-        campoNome.setText(acoes.chamadorConsultorio().getNome());
-        campoIdade.setText(Integer.toString(acoes.chamadorConsultorio().getIdade()));
-        campoContato.setText(acoes.chamadorConsultorio().getContato());
-        campoSintoma.setText(acoes.chamadorConsultorio().getSintomas());
-        //campoSintoma.setText(acoes.chamadorGuiche().getPrioridade());
+        campoNome.setText(paciente.getNome());
+        campoIdade.setText(Integer.toString(paciente.getIdade()));
+        campoContato.setText(paciente.getContato());
+        campoSintoma.setText(paciente.getSintomas());
+        campoPrioridade.setText(paciente.getPrioridade().name());
         campoPrescricao.setText("");
 
     }

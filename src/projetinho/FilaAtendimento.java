@@ -23,9 +23,9 @@ public class FilaAtendimento {
         TelaConsultorio telaConsultorio = new TelaConsultorio(interfaceActions, telaFilaConsultorio);
         
         telaInicial.setVisible(true);
-        telaFilaTriagem.setVisible(true);
-        telaFilaGuiche.setVisible(true);
-        telaFilaConsultorio.setVisible(true);
+        //telaFilaTriagem.setVisible(true);
+        //telaFilaGuiche.setVisible(true);
+        //telaFilaConsultorio.setVisible(true);
         telaTriagem.setVisible(true);
         telaGuiche.setVisible(true);
         telaConsultorio.setVisible(true);
