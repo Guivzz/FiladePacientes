@@ -1,0 +1,147 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package projetinho.Model;
+
+/**
+ *
+ * @author guigu
+ */
+public class FilaHandler {
+
+    public Nodo getInicio() {
+        return inicio;
+    }
+
+    private Nodo inicio;
+    private Nodo fim;
+    private int tamanho;
+
+    public FilaHandler() {
+        this.inicio = null;
+        this.fim = null;
+        this.tamanho = 0;
+    }
+
+    public void inserirPaciente(Paciente paciente) {
+        Nodo novoNodo = new Nodo(paciente);
+
+        if (this.inicio == null) {
+            this.inicio = novoNodo;
+            this.fim = novoNodo;
+        } else {
+            this.fim.proximo = novoNodo;
+            novoNodo.anterior = this.fim;
+            this.fim = novoNodo;
+        }
+
+        this.tamanho++;
+    }
+
+    public int tamanho() {
+        return tamanho;
+    }
+
+    public Paciente peek() {
+        if (this.inicio == null) {
+            return null;
+        }
+        return this.inicio.paciente;
+    }
+
+    public Paciente chamarPrimeiroPaciente() {
+        if (this.estaVazia()) {
+            return null;
+        }
+
+        Paciente paciente = this.inicio.paciente;
+        this.inicio = this.inicio.proximo;
+
+        if (this.inicio == null) {
+            this.fim = null;
+        } else {
+            this.inicio.anterior = null;
+        }
+
+        this.tamanho--;
+        return paciente;
+    }
+
+    public void removerPacienteObj(Paciente paciente) {
+        Nodo nodoAtual = this.inicio;
+        while (nodoAtual != null) {
+            if (nodoAtual.paciente.equals(paciente)) {
+                if (nodoAtual == this.inicio) {
+                    this.inicio = nodoAtual.proximo;
+                    if (this.inicio != null) {
+                        this.inicio.anterior = null;
+                    } else {
+                        this.fim = null; 
+                    }
+                } else if (nodoAtual == this.fim) {
+                    this.fim = nodoAtual.anterior;
+                    this.fim.proximo = null;
+                } else {
+                    nodoAtual.anterior.proximo = nodoAtual.proximo;
+                    nodoAtual.proximo.anterior = nodoAtual.anterior;
+                }
+                nodoAtual = null;
+                this.tamanho--;
+                return;
+            }
+            nodoAtual = nodoAtual.proximo;
+        }
+    }
+
+    public boolean estaVazia() {
+         return this.inicio == null && this.fim == null;
+    }
+
+    public void imprimir() {
+        Nodo nodo = this.inicio;
+
+        while (nodo != null) {
+            System.out.println(nodo.paciente);
+            nodo = nodo.proximo;
+        }
+    }
+
+    public class Nodo {
+
+        public Paciente getPaciente() {
+            return paciente;
+        }
+
+        public void setPaciente(Paciente paciente) {
+            this.paciente = paciente;
+        }
+
+        public Nodo getAnterior() {
+            return anterior;
+        }
+
+        public void setAnterior(Nodo anterior) {
+            this.anterior = anterior;
+        }
+
+        public Nodo getProximo() {
+            return proximo;
+        }
+
+        public void setProximo(Nodo proximo) {
+            this.proximo = proximo;
+        }
+
+        private Paciente paciente;
+        private Nodo anterior;
+        private Nodo proximo;
+
+        public Nodo(Paciente paciente) {
+            this.paciente = paciente;
+            this.anterior = null;
+            this.proximo = null;
+        }
+    }
+
+}
