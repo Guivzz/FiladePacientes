@@ -206,10 +206,15 @@ public class TelaTriagem extends javax.swing.JFrame {
         campoNome.setText("");
         campoSintoma.setText("");
         campoIdade.setText("");
+        prioridadeText.setText("");
     }
 
     public void finalizarTriagem() {
         acoes.editorTriagem(campoNome.getText(), Integer.parseInt(campoIdade.getText()), campoSintoma.getText(), Integer.parseInt(prioridadeText.getText())); // edita as informações do paciente e adiciona a filaGuiche
+        campoNome.setText("");
+        campoSintoma.setText("");
+        campoIdade.setText("");
+        prioridadeText.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

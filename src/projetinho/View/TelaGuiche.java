@@ -179,6 +179,9 @@ public class TelaGuiche extends javax.swing.JFrame {
 
     public void finalizarGuiche() {
         acoes.editorGuiche(campoCadastro.getText(), Integer.parseInt(campoCadastro.getText()));
+        campoNome.setText("");
+        campoContato1.setText("");
+        campoCadastro.setText("");
     }
 
 

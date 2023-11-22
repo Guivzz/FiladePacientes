@@ -38,7 +38,7 @@ public class TelaConsultorio extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         campoIdade = new javax.swing.JTextPane();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        finalizarBotao = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         tituloTriagem = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -51,7 +51,8 @@ public class TelaConsultorio extends javax.swing.JFrame {
         campoContato = new javax.swing.JTextPane();
         jScrollPane11 = new javax.swing.JScrollPane();
         campoSenha = new javax.swing.JTextPane();
-        jButton2 = new javax.swing.JButton();
+        proximoBotao = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 480));
@@ -59,6 +60,7 @@ public class TelaConsultorio extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         campoNome.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        campoNome.setEnabled(false);
         jScrollPane1.setViewportView(campoNome);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 139, 32));
@@ -79,6 +81,7 @@ public class TelaConsultorio extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 41, -1));
 
         campoPrioridade.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        campoPrioridade.setEnabled(false);
         jScrollPane4.setViewportView(campoPrioridade);
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 90, 32));
@@ -94,6 +97,7 @@ public class TelaConsultorio extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         campoIdade.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        campoIdade.setEnabled(false);
         jScrollPane7.setViewportView(campoIdade);
 
         getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 80, 32));
@@ -103,16 +107,16 @@ public class TelaConsultorio extends javax.swing.JFrame {
         jLabel7.setText("Tel. :");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 41, -1));
 
-        jButton1.setBackground(new java.awt.Color(188, 198, 167));
-        jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Próximo");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        finalizarBotao.setBackground(new java.awt.Color(188, 198, 167));
+        finalizarBotao.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
+        finalizarBotao.setForeground(new java.awt.Color(255, 255, 255));
+        finalizarBotao.setText("Finalizar");
+        finalizarBotao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                finalizarBotaoMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 139, -1));
+        getContentPane().add(finalizarBotao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 139, -1));
 
         jPanel1.setBackground(new java.awt.Color(156, 166, 131));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -168,38 +172,63 @@ public class TelaConsultorio extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         campoContato.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        campoContato.setEnabled(false);
         jScrollPane10.setViewportView(campoContato);
 
         getContentPane().add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 130, 32));
 
         campoSenha.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        campoSenha.setEnabled(false);
         jScrollPane11.setViewportView(campoSenha);
 
         getContentPane().add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 80, 32));
 
-        jButton2.setBackground(new java.awt.Color(188, 198, 167));
-        jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Próximo");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        proximoBotao.setBackground(new java.awt.Color(188, 198, 167));
+        proximoBotao.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
+        proximoBotao.setForeground(new java.awt.Color(255, 255, 255));
+        proximoBotao.setText("Próximo");
+        proximoBotao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                proximoBotaoMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 139, -1));
+        getContentPane().add(proximoBotao, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 139, -1));
+
+        jButton3.setBackground(new java.awt.Color(188, 198, 167));
+        jButton3.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Próximo");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 139, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void finalizarBotaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarBotaoMouseClicked
         // TODO add your handling code here:
-        proximoPaciente();
         acoes.removerConsultorio();
-    }//GEN-LAST:event_jButton1MouseClicked
+        campoNome.setText("");
+        campoIdade.setText("");
+        campoSenha.setText("");
+        campoContato.setText("");
+        campoSintoma.setText("");
+        campoPrescricao.setText("");
+        campoPrioridade.setText("");
+        System.out.println("Consulta Finalizada");
+    }//GEN-LAST:event_finalizarBotaoMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void proximoBotaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximoBotaoMouseClicked
+        proximoPaciente();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_proximoBotaoMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
 
     public void proximoPaciente() {
         try {
@@ -227,8 +256,8 @@ public class TelaConsultorio extends javax.swing.JFrame {
     private javax.swing.JTextPane campoPrioridade;
     private javax.swing.JTextPane campoSenha;
     private javax.swing.JTextArea campoSintoma;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton finalizarBotao;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -245,6 +274,7 @@ public class TelaConsultorio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JButton proximoBotao;
     private javax.swing.JLabel tituloTriagem;
     // End of variables declaration//GEN-END:variables
 }

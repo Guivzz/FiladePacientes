@@ -31,13 +31,12 @@ public class Programa {
             TelaConsultorio telaConsultorio = new TelaConsultorio(interfaceActions, telaFilaConsultorio);
 
             telaInicial.setVisible(true);
-            //telaFilaTriagem.setVisible(true);
-            //telaFilaGuiche.setVisible(true);
-            //telaFilaConsultorio.setVisible(true);
-            telaTriagem.setVisible(true);
+            /*telaFilaTriagem.setVisible(true);
+            telaFilaGuiche.setVisible(true);
+            telaFilaConsultorio.setVisible(true);*/
+            telaTriagem.setVisible(true); 
             telaGuiche.setVisible(true);
             telaConsultorio.setVisible(true);
-            throw new FilaException("Ocorreu um erro da execução");
             /*  InterfaceActions botao = new InterfaceActions(filaTriagem, filaGuiche, filaConsultorio);
 
         botao.adiconarPacientePreferencialTriagem();
@@ -78,7 +77,7 @@ public class Programa {
         botao.filaConsultorio.getFilaPadrao().imprimir();
         botao.filaConsultorio.getFilaPrioritaria().imprimir();
     }*/
-        } catch (FilaException e) {
+        } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
         }
     }
